@@ -34,5 +34,9 @@
 
 
    {Assemble with PCEAS: ver 3.24 or higher}
+     pceas -raw vce_dump.asm
+   
+   No external lib required for assembling. All code is self contained.
+   Just PCEAS (win binary included) is required.
 
  Turboxray '21
