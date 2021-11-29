@@ -16,35 +16,22 @@ HsyncISR.IRQ:
 ;............................................
 .hsync
             st0 #BYR
-            lda <line.indx
-            sta $0002
-            lda <line.indx+1
-            sta $0003
-
-
-        ;     bit <vdc_status
-        ; bvs .vsync
+            MOVE.w <line.indx, $0002
 
             st0 #RCR
-            lda <RCRline
-            sta $0002
-            lda <RCRline+1
-            sta $0003
-            inc <RCRline
-        bne .skip
-            inc <RCRline+1
+            MOVE.w <RCRline, $0002
+            INC.w <RCRline
 
-.skip
 
             INC.w <line.indx
             lda <line.indx
             cmp #$08
-        bcc .skip2
+        bcc .skip
             and #$07
             cmp #$01
-        bne .skip2
+        bne .skip
             INC.w <line.indx
-.skip2
+.skip
 
             lda IRQ.ackVDC
             sta <vdc_status
@@ -70,19 +57,12 @@ HsyncISR.IRQ:
     phx
     phy
 
-            stz <line.indx
-            stz <line.indx+1
+            MOVE.w #$00, <line.indx
 
-            ; VDC.reg CR , #(BG_ON|SPR_OFF|VINT_ON|HINT_ON)
-            lda #(64)
-            sta <RCRline
             st0 #RCR
-            sta $0002
-            st2 #$00
+            MOVE.w #64, $0002
             stz __vblank
-            lda #(65)
-            sta <RCRline
-            stz <RCRline+1
+            MOVE.w #65, <RCRline
 
             VDC.reg BXR, _BXR
             VDC.reg BYR, _BYR
@@ -96,7 +76,3 @@ HsyncISR.IRQ:
     jmp [vdc_vsync]
 
 HsyncISR.IRQ.VDCrtn = .HsyncISR.IRQ.VDCrtn
-
-
-
-

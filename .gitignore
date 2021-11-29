@@ -1,0 +1,4 @@
+*.sym
+*.lst
+log.txt
+.DS_store
