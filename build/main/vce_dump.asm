@@ -5,7 +5,7 @@
 ;
 ;  Details:
 ;
-;    Set pin 59 to ground on VCE for the LSB of the YUV value.
+;    Set pin 58 to ground on VCE for the LSB of the YUV value.
 ;    Set pin 58 and 59 to ground on VCE for MSB of the YUV value.
 ;
 ;    Pin test pin 58 set low sets the VCE to read from the YUV table.
