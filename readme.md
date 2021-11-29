@@ -9,6 +9,9 @@
    Pin test pin 58 set low sets the VCE to read from the YUV table.
    Pin 59 set (high/low) is the LSB or MSB of the YUV word value.
 
+   If pin 58 is not set low, the values read from the VCE will be 00
+   to $ff. You can use this as a functional test.
+
    YUV word format is 0UUUUUVVVVVYYYYY. You'll need to do a two
    pass capture to get the whole WORD value.
 
